@@ -1,0 +1,12 @@
+{
+  "name": "tian-dynascreep",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "boboan",
+  "devDependencies": {
+    "@types/lodash": "^4.14.195",
+    "@types/screeps": "^3.3.3",
+    "jest": "^29.5.0"
+  }
+}
