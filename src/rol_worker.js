@@ -1,4 +1,4 @@
-const ability = require('./common.compose.ability').x_actions
+const ability = require('./common.creep').x_actions
 
 const Controller = {
     run(creep) {

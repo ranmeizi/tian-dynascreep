@@ -9,10 +9,10 @@ const actions = {
      * action
      * 去采矿，采到包满
      * @param {Creep} creep 
-     * @param {string} id sourceId
+     * @param {HarvestCtx} ctx 
      * @returns {StageStatus}
      */
-    harvest(creep, id) {
+    harvest(creep, { id }) {
         // 中断条件 判断 store 是否已经满了
         if (creep.store.getFreeCapacity() === 0) {
             return global.STage
@@ -47,12 +47,12 @@ const actions = {
      */
     harvest_loop(creep, id) {
         // 搬
-        const res = actions.harvest(creep, id)
+        const res = actions.harvest(creep, { id })
 
         switch (res) {
             case STAGE_COMPLETE:
                 // harvest_loop 从 action queue 移除
-                const actionQueue = creep.memory[CONSTANTS.CREEP_MEMO_ACTION_QUEUE_KEY]
+                const actionQueue = creep.memory.actionQueue ?? []
                 actionQueue.shift()
                 // 添加接单任务
                 actionQueue.pushActionSort()
@@ -65,10 +65,14 @@ const actions = {
     /**
      * 
      * @param {Creep} creep 
-     * @param {number} defaultSearchRange 默认搜索范围
+     * @param {LogisticsSearchOrderCtx} ctx 
      */
-    logistics_search_order(creep, defaultSearchRange) {
-
+    logistics_search_order(creep, { range }) {
+        // 找
+        for (let [k, v] of Object.entries(creep.room.memory.mission.logistics)){
+            
+        }
+        // 扩大range找
     },
     /**
      * action
@@ -102,10 +106,25 @@ const actions = {
         }
 
         return STAGE_RUNNING
+    },
+    /**
+     * 处理后事
+     * 对可以投胎的creep无效
+     * @param {CustCreepMemory} memo 
+     */
+    advanceFuneralAffairs(memo) {
+        if (memo.immortal) {
+            // 向 room 发送一个 spawn 重生任务
+            return
+        }
+
+        // 清除自己的任务副作用
+        memo.missions.forEach(({ id, type }) => {
+            // 调用 mission 默块的 handler
+        })
     }
 }
 
-module.exports.x_actions = actions
-
-// 挂在原型链
-// Creep.prototype.x_actions = actions
+module.exports = {
+    actions
+}
