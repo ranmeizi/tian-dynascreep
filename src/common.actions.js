@@ -1,7 +1,8 @@
 global.ACTION_NAMES={
     harvest:'harvest',
     logisticsUnload:'logisticsUnload',
-    logisticsSearchOrder:'logisticsSearchOrder'
+    logisticsSearchOrder:'logisticsSearchOrder',
+    spawn:'spawn'
 }
 
 /** 
@@ -19,6 +20,7 @@ const ActionHarvest = (ctx, sort) => {
 }
 
 /**
+ * 创建一个物流任务
  * @type {ActionMemoObj<LogisticsSearchOrderCtx>} 
  */
 const ActionLogisticsSearchOrder = (ctx, sort) => {

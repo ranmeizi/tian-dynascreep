@@ -1,9 +1,3 @@
-const { CONSTANTS } = require('./config')
-
-/**
- * @typedef {Action} action
- */
-
 const actions = {
     /**
      * action
@@ -52,7 +46,7 @@ const actions = {
         switch (res) {
             case STAGE_COMPLETE:
                 // harvest_loop 从 action queue 移除
-                const actionQueue = creep.memory.actionQueue ?? []
+                const actionQueue = creep.memory.actions ?? []
                 actionQueue.shift()
                 // 添加接单任务
                 actionQueue.pushActionSort()
@@ -69,8 +63,8 @@ const actions = {
      */
     logistics_search_order(creep, { range }) {
         // 找
-        for (let [k, v] of Object.entries(creep.room.memory.mission.logistics)){
-            
+        for (let [k, v] of Object.entries(creep.room.memory.task.logistics)) {
+
         }
         // 扩大range找
     },
@@ -119,12 +113,10 @@ const actions = {
         }
 
         // 清除自己的任务副作用
-        memo.missions.forEach(({ id, type }) => {
+        memo.tasks.forEach(({ id, type }) => {
             // 调用 mission 默块的 handler
         })
     }
 }
 
-module.exports = {
-    actions
-}
+module.exports = actions

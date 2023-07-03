@@ -103,3 +103,11 @@ range 递增：
     1个人完成不了的物流，
 
 2. 检查各个 structor store 情况，按照小物流(spawn/ext)和大物流(link/container/storage等) 
+
+### tick 流程
+
+- 准备阶段 prepare
+- 行动阶段 run
+
+prepareList
+runList

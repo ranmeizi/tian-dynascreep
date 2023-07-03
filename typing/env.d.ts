@@ -4,6 +4,10 @@ declare var STAGE_COMPLETE: StageStatus.STAGE_COMPLETE
 declare var STAGE_RUNNING: StageStatus.STAGE_RUNNING
 /** 发生小问题！ */
 declare var STAGE_UNEXPECTED: StageStatus.STAGE_UNEXPECTED
+/** 准备阶段数组 */
+declare var prepareList: Array<function(): void>
+/** 行动阶段数组 */
+declare var runList: Array<function(): void>
 
 /** action 一个有意义的名字 */
 declare var ACTION_NAMES: {
@@ -18,5 +22,9 @@ declare var ACTION_NAMES: {
     /**
      * 物流接单
      */
-    logisticsSearchOrder:'logisticsSearchOrder'
+    logisticsSearchOrder: 'logisticsSearchOrder',
+    /**
+     * 孵化
+     */
+    spawn: 'spawn'
 }
